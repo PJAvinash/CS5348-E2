@@ -89,6 +89,11 @@ exec(char *path, char **argv)
   switchuvm(proc);
   freevm(oldpgdir);
 
+  //added by JXP220032
+  if(proc->pid == 1){
+    ptprint(proc->pgdir);
+  }
+
   return 0;
 
  bad:
