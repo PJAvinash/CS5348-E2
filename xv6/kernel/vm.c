@@ -379,7 +379,7 @@ void ptprint(pde_t *pgdir)
     //PTE_P: Page table entry present
     if (pgdir[i] & PTE_P)
     { 
-      cprintf("..%d: pde 0x%08x pa 0x%08x\n", i, pgdir[i], PTE_ADDR(pgdir[i]));
+      cprintf("..%d: pde %p pa %p\n", i, pgdir[i], PTE_ADDR(pgdir[i]));
       lines++;
       if(lines >= MAX_LINES ){return;}
       pte_t *pgtbl = (pte_t *)(PTE_ADDR(pgdir[i]));
@@ -388,7 +388,7 @@ void ptprint(pde_t *pgdir)
       {
         if (pgtbl[j] & PTE_P)
         {
-          cprintf(".. ..%d: pte 0x%08x pa 0x%08x\n", j, pgtbl[j], PTE_ADDR(pgtbl[j]));
+          cprintf(".. ..%d: pte %p pa %p\n", j, pgtbl[j], PTE_ADDR(pgtbl[j]));
           lines++;
           if(lines >= MAX_LINES ){return;}
         }
