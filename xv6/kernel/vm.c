@@ -368,7 +368,7 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 // added by JXP220032
 void ptprint(pde_t *pgdir)
 {
-  int MAX_LINES = 1000;
+  int MAX_LINES = 2048;
   int lines = 0;
   cprintf("pgdir %p\n", pgdir);
   lines++;
@@ -382,7 +382,7 @@ void ptprint(pde_t *pgdir)
       cprintf("..%d: pde 0x%08x pa 0x%08x\n", i, pgdir[i], PTE_ADDR(pgdir[i]));
       lines++;
       if(lines >= MAX_LINES ){return;}
-      pde_t *pgtbl = (pde_t *)(PTE_ADDR(pgdir[i]));
+      pte_t *pgtbl = (pte_t *)(PTE_ADDR(pgdir[i]));
       int j;
       for (j = 0; j < NPTENTRIES; j++)
       {
